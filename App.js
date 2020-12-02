@@ -4,23 +4,27 @@ import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import CounterText from './components/CounterText';
 
 export default function App() {
-	let [ feedback, setFeedback ] = useState(' ');
+	let [ feedback, setFeedback ] = useState('Tap the screen!');
 	const [ count, setCount ] = useState(0);
 
 	const increase = () => {
-		if (count % 10 == 0) {
-			setFeedback((feedback = 'Good Job!'));
-			console.log('Hello World!');
-		} else {
-			setFeedback((feedback = ' '));
-		}
+
 		setCount(count + 1);
+		if ((count % 10) == 0 && count > 1) {
+			setFeedback(feedback = 'Good Job! '+ count + ' Clicks.');
+		} else {
+			// setFeedback((feedback = ' '));
+		}
 	};
 	function decrease() {
 		setCount(count - 1);
 	}
 
-	const reset = () => setCount(count - count);
+	const reset = () => {
+		setCount(count - count);
+		setFeedback(feedback = 'Tap the screen!');
+
+	}
 	return (
 		<View style={styles.container} onStartShouldSetResponder={increase}>
       
@@ -40,15 +44,15 @@ export default function App() {
 				<CounterText color="navy" fontSize={90}>
 					{count}
 				</CounterText>
-				<Text style={styles.counter}>Counter : {count}</Text>
+				{/* <Text style={styles.counter}>Counter : {count}</Text> */}
 			</View>
 			<View style={styles.buttonContainer}>
-				<TouchableOpacity onPress={increase} style={styles.button}>
+				{/* <TouchableOpacity onPress={increase} style={styles.button}>
 					<Text>Increase</Text>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={decrease} style={styles.button}>
 					<Text>Decrease</Text>
-				</TouchableOpacity>
+				</TouchableOpacity> */}
 				<TouchableOpacity onPress={reset} style={styles.button}>
 					<Text>Reset</Text>
 				</TouchableOpacity>

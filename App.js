@@ -4,32 +4,42 @@ import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import CounterText from './components/CounterText';
 
 export default function App() {
-	let [ feedback, setFeedback ] = useState('Tap the screen!');
-	const [ count, setCount ] = useState(0);
+	// let [ feedback, setFeedback ] = useState('Tap the screen!');
+	let [ count, setCount ] = useState(0);
+	let [ time, setTime] = useState(0);
 
 	const increase = () => {
-
 		setCount(count + 1);
-		if ((count % 10) == 0 && count > 1) {
-			setFeedback(feedback = 'Good Job! '+ count + ' Clicks.');
-		} else {
-			// setFeedback((feedback = ' '));
-		}
-	};
+		// if (count == 0){
+		// 	console.log("Timer Starts");
+		// 	setInterval(setTime(time + 1),1000);
+		// } if (count == 100){
+		// 	clearInterval();
+		// }
+	}
+
 	function decrease() {
 		setCount(count - 1);
 	}
 
 	const reset = () => {
 		setCount(count - count);
-		setFeedback(feedback = 'Tap the screen!');
 
+	}
+
+	function feedback(){
+		if ((count%10)==0 && count != 0){
+			return "Wow! " + count + " clicks."
+		} else {
+			return "Tap the screen!"
+		}
 	}
 	return (
 		<View style={styles.container} onStartShouldSetResponder={increase}>
       
 			<View>
-				<Text style={styles.text}>{feedback}</Text>
+				<Text style={styles.text}>{feedback()}</Text>
+				{/* <Text style={styles.text}>{time}</Text> */}
 			</View>
 			<View>
 				<CounterText color="lightgrey" fontSize={10}>

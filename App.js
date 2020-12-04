@@ -4,18 +4,32 @@ import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import CounterText from './components/CounterText';
 
 export default function App() {
-	// let [ feedback, setFeedback ] = useState('Tap the screen!');
 	let [ count, setCount ] = useState(0);
 	let [ time, setTime] = useState(0);
 
 	const increase = () => {
 		setCount(count + 1);
-		// if (count == 0){
-		// 	console.log("Timer Starts");
-		// 	setInterval(setTime(time + 1),1000);
-		// } if (count == 100){
-		// 	clearInterval();
-		// }
+		// setTime(time + 12);
+		console.log(count);
+
+		let nowTime = "";
+		if (count == 20){
+			console.log(`I am still counting to ${count}.`);
+			clearInterval(nowTime);
+		}else if (count > 1){
+			console.log(`I am counting to ${count}.`);
+			nowTime = setInterval(()=>console.log(`Timer in function:.`),1000);
+			setTime(nowTime);
+			console.log(`Timer: ${nowTime}.`);
+		}
+	}
+
+	function startTimer(){
+		// nowTime + 1;
+		// setTime(nowTime);  
+
+		console.log(`Timer in function:.`);
+		// return nowTime;
 	}
 
 	function decrease() {
@@ -24,7 +38,7 @@ export default function App() {
 
 	const reset = () => {
 		setCount(count - count);
-
+		clearInterval();
 	}
 
 	function feedback(){
@@ -34,24 +48,28 @@ export default function App() {
 			return "Tap the screen!"
 		}
 	}
+
+	function showTime(){
+		return time;
+	}
 	return (
 		<View style={styles.container} onStartShouldSetResponder={increase}>
       
 			<View>
 				<Text style={styles.text}>{feedback()}</Text>
-				{/* <Text style={styles.text}>{time}</Text> */}
+				<Text style={styles.text}>Timer: {showTime()}</Text>
 			</View>
 			<View>
-				<CounterText color="lightgrey" fontSize={10}>
+				<CounterText color="lightgrey" fontSize={10} bottomM={20} borderC="red">
 					{count}
 				</CounterText>
-				<CounterText color="lightblue" fontSize={30}>
+				<CounterText color="lightblue" fontSize={30} bottomM={30} borderC="orange">
 					{count}
 				</CounterText>
-				<CounterText color="blue" fontSize={60}>
+				<CounterText color="blue" fontSize={60} bottomM = {40} borderC="yellow">
 					{count}
 				</CounterText>
-				<CounterText color="navy" fontSize={90}>
+				<CounterText color="navy" fontSize={90} bottomM = {50} borderC="green">
 					{count}
 				</CounterText>
 				{/* <Text style={styles.counter}>Counter : {count}</Text> */}
